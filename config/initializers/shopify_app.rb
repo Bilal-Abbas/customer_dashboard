@@ -1,13 +1,12 @@
 ShopifyApp.configure do |config|
-  config.application_name = "My Shopify App"
+  config.application_name = "Customer Dashboard"
   config.old_secret = ""
-  config.scope = "read_orders, write_orders, read_customers, write_customers" # Consult this page for more scope options:
-                                  # https://help.shopify.com/en/api/getting-started/authentication/oauth/scopes
-  config.embedded_app = false
+  config.scope = ENV.fetch('SHOPIFY_API_SCOPES', '').split(",").join(", ") #"read_orders, write_orders, read_customers, write_customers" #ENV.fetch('SHOPIFY_API_SCOPES', '').split(",").join(", "), 
+  config.embedded_app = ENV.fetch('SHOPIFY_EMBEDDED_APP', 'false').to_s.downcase == 'true'
   config.new_embedded_auth_strategy = true
 
   config.after_authenticate_job = false
-  config.api_version = "2024-07"
+  config.api_version = ENV.fetch('SHOPIFY_API_VERSION', '').presence
   config.shop_session_repository = 'Shop'
   config.log_level = :info
   config.reauth_on_access_scope_changes = true

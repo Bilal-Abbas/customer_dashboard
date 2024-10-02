@@ -76,3 +76,7 @@ gem "shopify_app", "~> 22.4"
 gem 'dotenv'
 
 gem 'pry'
+
+gem "devise", "~> 4.9"
+
+gem "shopify_api", "~> 14.5"
