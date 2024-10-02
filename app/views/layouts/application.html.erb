@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
@@ -15,12 +14,8 @@
       <% if customer_signed_in? %>
         <p>Welcome, <%= current_customer.email %>!</p>
         <%= link_to 'Sign Out', destroy_customer_session_path, method: :delete, data: { confirm: 'Are you sure you want to sign out?', turbo: false } %>
-      <% else %>
-        <%= link_to 'Sign In', new_customer_session_path %>
       <% end %>
     </header>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
