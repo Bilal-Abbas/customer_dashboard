@@ -1,67 +1,118 @@
 <main>
   <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
     <div class="container">
-        <div class="row justify-content-center form-bg-image" data-background-lg="url(<%= asset_path('illustrations/signin.svg') %>);" style="background: url(<%= asset_path('illustrations/signin.svg') %>);">
-            <div class="col-12 d-flex align-items-center justify-content-center">
-                <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
-                    <div class="text-center text-md-center mb-4 mt-md-0">
-                        <h1 class="mb-0 h3">Create Account</h1>
-                    </div>
-                    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                        <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="row justify-content-center form-bg-image" data-background-lg="url(<%= asset_path('illustrations/signin.svg') %>);" style="background: url(<%= asset_path('illustrations/signin.svg') %>);">
+        <div class="col-12 d-flex align-items-center justify-content-center">
+          <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500" style="max-height: 100vh; display: flex; flex-direction: column;">
+            
+            <!-- Title Section -->
+            <div class="text-center text-md-center mb-4 mt-md-0">
+              <h1 class="mb-0 h3">Create Account</h1>
+            </div>
+            
+            <!-- Scrollable Form Section -->
+            <div class="scrollable-form" style="flex-grow: 1; overflow-y: auto; padding: 0px 5px; max-height: 70vh;">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
 
-                        <div class="form-group mb-4">
-                            <%= f.label :email, class: 'form-label' %>
-                            <div class="input-group">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
-                                    </svg>
-                                </span>
-                                <%= f.email_field :email, class: 'form-control', placeholder: 'example@company.com', autofocus: true, autocomplete: "email", required: true %>
-                            </div>
-                        </div>
+                <div class="form-group mb-4">
+                    <%= f.label :first_name, class: 'form-label' %>
+                    <%= f.text_field :first_name, class: 'form-control', placeholder: 'First Name', required: true, autofocus: true %>
+                </div>
 
-                        <div class="form-group mb-4">
-                            <%= f.label :password, class: 'form-label' %>
-                            <% if @minimum_password_length %>
-                                <em>(<%= @minimum_password_length %> characters minimum)</em>
-                            <% end %>
-                            <div class="input-group">
-                                <span class="input-group-text" id="basic-addon2">
-                                    <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                </span>
-                                <%= f.password_field :password, class: 'form-control', placeholder: 'Password', autocomplete: "new-password", required: true %>
-                            </div>
-                        </div>
+                <div class="form-group mb-4">
+                    <%= f.label :last_name, class: 'form-label' %>
+                    <%= f.text_field :last_name, class: 'form-control', placeholder: 'Last Name', required: true %>
+                </div>
 
-                        <div class="form-group mb-4">
-                            <%= f.label :password_confirmation, class: 'form-label' %>
-                            <div class="input-group">
-                                <span class="input-group-text" id="basic-addon2">
-                                    <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                </span>
-                                <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirm Password', autocomplete: "new-password", required: true %>
-                            </div>
-                        </div>
+                <div class="form-group mb-4">
+                    <%= f.label :phone_number, class: 'form-label' %>
+                    <%= f.text_field :phone_number, class: 'form-control', placeholder: 'Phone Number', required: true %>
+                </div>
 
-                        <div class="d-grid">
-                            <%= f.submit "Sign up", class: 'btn btn-gray-800' %>
-                        </div>
+                <div class="form-group mb-4">
+                    <%= f.label :company_name, class: 'form-label' %>
+                    <%= f.text_field :company_name, class: 'form-control', placeholder: 'Company Name / DBA Name', required: true %>
+                </div>
+
+                <div class="form-group mb-4">
+                    <%= f.label :website, class: 'form-label' %>
+                    <%= f.text_field :website, class: 'form-control', placeholder: 'Website' %>
+                </div>
+
+                <div class="form-group mb-4">
+                    <%= f.label :sales_tax_id, class: 'form-label' %>
+                    <%= f.text_field :sales_tax_id, class: 'form-control', placeholder: 'Sales Tax ID / Permit / VAT' %>
+                </div>
+
+                <div class="form-group mb-4">
+                    <%= f.label :address1, class: 'form-label' %>
+                    <%= f.text_field :address1, class: 'form-control', placeholder: 'Address 1', required: true %>
+                </div>
+
+                <div class="form-group mb-4">
+                    <%= f.label :suite_unit_apartment, class: 'form-label' %>
+                    <%= f.text_field :suite_unit_apartment, class: 'form-control', placeholder: 'Suite, Unit, Apartment, Etc.' %>
+                </div>
+
+                <div class="form-group mb-4">
+                    <%= f.label :city, class: 'form-label' %>
+                    <%= f.text_field :city, class: 'form-control', placeholder: 'City', required: true %>
+                </div>
+
+                <div class="form-group mb-4">
+                    <%= f.label :zip_code, class: 'form-label' %>
+                    <%= f.text_field :zip_code, class: 'form-control', placeholder: 'Zip Code', required: true %>
+                </div>
+
+                <div class="form-group mb-4">
+                    <%= f.label :country, class: 'form-label' %>
+                    <%= f.text_field :country, class: 'form-control', placeholder: 'Country' %>
+                </div>
+
+                <div class="form-group mb-4">
+                    <%= f.label :business_type, class: 'form-label' %>
+                    <%= f.select :business_type, options_for_select(['Sole Proprietorship', 'LLC', 'Corporation', 'Non-Profit', 'Other']), {}, class: 'form-control' %>
+                </div>
+
+                <div class="form-group mb-4">
+                    <%= f.label :email, class: 'form-label' %>
+                    <%= f.email_field :email, class: 'form-control', placeholder: 'example@company.com', autocomplete: "email", required: true %>
+                </div>
+
+                <div class="form-group mb-4">
+                    <%= f.label :password, class: 'form-label' %>
+                    <% if @minimum_password_length %>
+                        <em>(<%= @minimum_password_length %> characters minimum)</em>
                     <% end %>
-                    <div class="d-flex justify-content-center align-items-center mt-4">
-                      <span class="fw-normal">
-                        Already have an account? <a href="<%= new_session_path(resource_name) %>">Log in
-                      </span>
+                    <%= f.password_field :password, class: 'form-control', placeholder: 'Password', autocomplete: "new-password", required: true %>
+                </div>
+
+                <div class="form-group mb-4">
+                    <%= f.label :password_confirmation, class: 'form-label' %>
+                    <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirm Password', autocomplete: "new-password", required: true %>
+                </div>
+
+                <!-- Sticky Sign Up Button -->
+                <div class="sticky-footer" style="position: sticky; bottom: 0; background-color: white; padding: 10px 0;">
+                    <div class="d-grid">
+                        <%= f.submit "Sign up", class: 'btn btn-gray-800', style: "width: 100%;" %>
                     </div>
                 </div>
+                
+              <% end %>
             </div>
+
+            <!-- Sticky Footer Section -->
+            <div class="d-flex justify-content-center align-items-center mt-4">
+              <span class="fw-normal">
+                Already have an account? <a href="<%= new_session_path(resource_name) %>" class="fw-bold">Log in</a>
+              </span>
+            </div>
+
+          </div>
         </div>
+      </div>
     </div>
   </section>
 </main>
