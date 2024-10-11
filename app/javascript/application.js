@@ -34,12 +34,7 @@ import "./vendor/notyf/notyf.min.js";
 import "./vendor/simplebar/dist/simplebar.min.js";
 
 // Volt JS
-import "./volt.js";
-
-
-document.addEventListener("turbo:load", () => {
-    console.log("Turbo is working!");
-});
+// import "./volt.js";
 
 document.addEventListener("click", function (event) {
     if (event.target.matches("[data-method='delete']")) {
