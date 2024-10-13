@@ -14,6 +14,18 @@ class Customer < ApplicationRecord
   validates :zip_code, presence: true, format: { with: /\A\d{5}(-\d{4})?\z/, message: "must be a valid zip code" }
   validates :country, presence: true, length: { maximum: 50 }
   validates :business_type, presence: true
-  validates :tax_form, presence: true, format: { with: /\.(pdf|jpg|jpeg|png)\z/i, message: "must be a PDF or image file" }, on: :create
 
+  validate :tax_form_format, if: :tax_form_present
+
+  private
+
+  def tax_form_present
+    self.persisted? && self.tax_form.attached?
+  end
+
+  def tax_form_format
+    if tax_form.attached? && !tax_form.content_type.in?(%w(application/pdf image/jpeg image/png))
+      errors.add(:tax_form, "must be a PDF or image file")
+    end
+  end
 end
