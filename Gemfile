@@ -82,3 +82,5 @@ gem "devise", "~> 4.9"
 gem "shopify_api", "~> 14.5"
 
 gem "omniauth", "~> 1.0.0"
+
+gem 'activestorage'

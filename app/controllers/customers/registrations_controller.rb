@@ -41,11 +41,11 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone_number, :company_name, :website, :sales_tax_id, :address1, :suite_unit_apartment, :city, :zip_code, :country, :business_type])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone_number, :company_name, :website, :sales_tax_id, :address1, :suite_unit_apartment, :city, :zip_code, :country, :business_type, :tax_form])
   end
 
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :phone_number, :company_name, :website, :sales_tax_id, :address1, :suite_unit_apartment, :city, :zip_code, :country, :business_type])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :phone_number, :company_name, :website, :sales_tax_id, :address1, :suite_unit_apartment, :city, :zip_code, :country, :business_type, :tax_form])
   end
 
   # The path used after sign up.
