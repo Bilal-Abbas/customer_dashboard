@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   private
 
   # def log_request_endpoint
-  #   binding.pry
   #   Rails.logger.info "Requested endpoint: #{request.fullpath}" # Logs the full request path
   #   # or you can use
   #   # Rails.logger.info "Requested endpoint: #{request.path}" # Logs only the path without query parameters
