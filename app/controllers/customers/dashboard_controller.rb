@@ -4,7 +4,6 @@ module Customers
     before_action :ensure_shop_installed
 
     def index
-      # Assuming you have access to the store's data
       @shop = Shop.first
 
       if @shop.present? && @shop.shopify_token.present?
@@ -13,12 +12,11 @@ module Customers
           access_token: @shop.shopify_token
         )
 
-        # Initialize the API with the session
         ShopifyAPI::Context.setup(
           api_key: ENV.fetch('SHOPIFY_API_KEY', '').presence,
           api_secret_key: ENV.fetch('SHOPIFY_API_SECRET', '').presence,
           api_version: ENV.fetch('SHOPIFY_API_VERSION', '2024-07').presence,
-          scope: ENV.fetch('SHOPIFY_API_SCOPES', '').split(",").join(", "), #"read_orders, write_orders, read_customers, write_customers",
+          scope: ENV.fetch('SHOPIFY_API_SCOPES', '').split(",").join(", "),
           host: ENV.fetch('SHOPIFY_API_SCOPES', request.host).presence,
           is_embedded: ENV.fetch('SHOPIFY_EMBEDDED_APP', 'false').to_s.downcase == 'true',
           is_private: ENV.fetch('SHOPIFY_PRIVATE_APP', 'false').to_s.downcase == 'true',
@@ -26,9 +24,15 @@ module Customers
 
         ShopifyAPI::Context.activate_session(session)
 
-        # Use the session to fetch orders
-        if(current_customer)
-          @orders = ShopifyAPI::Order.all(customer: current_customer.email)
+        if current_customer
+          search_query = params[:query].to_s.strip
+          if search_query.present?
+            @orders = ShopifyAPI::Order.all(customer: current_customer.email).select do |order|
+              order.name.include?(search_query)
+            end
+          else
+            @orders = ShopifyAPI::Order.all(customer: current_customer.email)
+          end
         else
           redirect_to customer_session_path
         end
